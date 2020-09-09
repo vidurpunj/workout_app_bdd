@@ -38,6 +38,9 @@ end
 
 group :test do
   gem 'capybara', '~> 3.33.0'
+  gem 'guard', '~> 2.16.2'
+  gem 'guard-rspec', '~> 4.7.3'
+  gem 'guard-cucumber', '~> 3.0.0'
 end
 
 group :development do
@@ -51,3 +54,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
