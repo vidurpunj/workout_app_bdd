@@ -16,29 +16,29 @@
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
 cucumber_options = {
-  # Below are examples overriding defaults
+    # Below are examples overriding defaults
 
-  # cmd: 'bin/cucumber',
-  # cmd_additional_args: '--profile guard',
+    # cmd: 'bin/cucumber',
+    # cmd_additional_args: '--profile guard',
 
-  # all_after_pass: false,
-  # all_on_start: false,
-  # keep_failed: false,
-  # feature_sets: ['features/frontend', 'features/experimental'],
+    # all_after_pass: false,
+    # all_on_start: false,
+    # keep_failed: false,
+    # feature_sets: ['features/frontend', 'features/experimental'],
 
-  # run_all: { cmd_additional_args: '--profile guard_all' },
-  # focus_on: { 'wip' }, # @wip
-  # notification: false
+    # run_all: { cmd_additional_args: '--profile guard_all' },
+    # focus_on: { 'wip' }, # @wip
+    # notification: false
 }
 
-guard "cucumber", cucumber_options do
-  watch(%r{^features/.+\.feature$})
-  watch(%r{^features/support/.+$}) { "features" }
-
-  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "features"
-  end
-end
+# guard "cucumber", cucumber_options do
+#   watch(%r{^features/.+\.feature$})
+#   watch(%r{^features/support/.+$}) { "features" }
+#
+#   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) do |m|
+#     Dir[File.join("**/#{m[1]}.feature")][0] || "features"
+#   end
+# end
 
 # Note: The cmd option is now required due to the increasing number of ways
 #       rspec may be run, below are examples of the most common uses.
@@ -70,22 +70,26 @@ guard :rspec, cmd: "bundle exec rspec" do
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 
+  # Adding watchers
+  watch(%r{^app/controllers/(.+)_(controller)\.rb$}) { "spec/features" } ## any change made in controller it will run all tests under specs/features
+  watch(%r{^app/models/(.+)\.rb$}) { "spec/features" } ## any change made in model it will run all tests under specs/features
+
   watch(rails.controllers) do |m|
     [
-      rspec.spec.call("routing/#{m[1]}_routing"),
-      rspec.spec.call("controllers/#{m[1]}_controller"),
-      rspec.spec.call("acceptance/#{m[1]}")
+        rspec.spec.call("routing/#{m[1]}_routing"),
+        rspec.spec.call("controllers/#{m[1]}_controller"),
+        rspec.spec.call("acceptance/#{m[1]}")
     ]
   end
 
   # Rails config changes
-  watch(rails.spec_helper)     { rspec.spec_dir }
-  watch(rails.routes)          { "#{rspec.spec_dir}/routing" }
-  watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
+  watch(rails.spec_helper) { rspec.spec_dir }
+  watch(rails.routes) {"spec"}  ##  { "#{rspec.spec_dir}/routing" }
+  watch(rails.app_controller) { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
-  watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.view_dirs) { "spec/features" } # { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.layouts) { |m| rspec.spec.call("features/#{m[1]}") }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})

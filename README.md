@@ -26,4 +26,11 @@ Rspec and capybra
 ## Add bootstrap 
 * yarn add bootstrap jquery popper.js
 
+## Devise
+gem 'devise', '~> 4.7.2'
+
+## Faker 
+
+
+
  

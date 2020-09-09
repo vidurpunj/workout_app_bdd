@@ -2,4 +2,5 @@
 <h1>Workout Lounge!</h1>
 
 <p>Show off your workout to you friends and family</p>
+  <%= "signed in as  #{current_user.email }" if user_signed_in? %>
 </div>
