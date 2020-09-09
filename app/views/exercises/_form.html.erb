@@ -1,0 +1,30 @@
+<%= form_with(url: [current_user, @exercise], model: @exercise, html: {class: 'form-horizontal', role: 'form'}, local: true) do |f| %>
+  <% if @exercise.errors.any? %>
+    <div class="error_explaination">
+      <h2><%= pluralize(@exercise.errors.count, 'error') %>
+        prohibited the exercise to be saved.</h2>
+      <ul>
+        <% @exercise.errors.full_messages do |message| %>
+          <li>
+            <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :duration_in_minute, 'Duration (min)' %>
+    <%= f.number_field :duration_in_minute, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :workout_details, 'Workout Details' %>
+    <%= f.text_area :workout_details, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :workout_date, 'Activity date' %>
+    <%= f.date_field  :workout_date, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Create Exercise' %>
+  </div>
+<% end %>

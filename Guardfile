@@ -71,7 +71,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   dsl.watch_spec_files_for(rails.views)
 
   # Adding watchers
-  watch(%r{^app/controllers/(.+)_(controller)\.rb$}) { "spec/features" } ## any change made in controller it will run all tests under specs/features
+  watch(%r{^app/controllers/(.+)_(controller)\.rb$}) { ["spec/features", 'spec/exercises'] } ## any change made in controller it will run all tests under specs/features
   watch(%r{^app/models/(.+)\.rb$}) { "spec/features" } ## any change made in model it will run all tests under specs/features
   watch(%r{^app/views/layouts/application.html.erb$}) {'spec/features'}
 
@@ -89,7 +89,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rails.app_controller) { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs) { "spec/features" } # { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.view_dirs) { ["spec/features", 'spec/exercises'] } # { |m| rspec.spec.call("features/#{m[1]}") }
   watch(rails.layouts) { |m| rspec.spec.call("features/#{m[1]}") }
 
   # Turnip features and steps

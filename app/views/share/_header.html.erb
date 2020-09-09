@@ -14,6 +14,7 @@
           <%= link_to 'Athletes Den', root_path, class: "nav-link" %>
         </li>
 
+
         <li class="nav-item">
           <% if user_signed_in? %>
             <div class="navbar-right">
@@ -21,6 +22,9 @@
                 <%= current_user.email %>
               </p>
             </div>
+            <li class="nav-item">
+              <%= link_to 'My Lounge', user_exercises_path(current_user), class: 'nav-link' %>
+            </li>
           <% else %>
             <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
           <% end %>
