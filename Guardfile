@@ -73,6 +73,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   # Adding watchers
   watch(%r{^app/controllers/(.+)_(controller)\.rb$}) { "spec/features" } ## any change made in controller it will run all tests under specs/features
   watch(%r{^app/models/(.+)\.rb$}) { "spec/features" } ## any change made in model it will run all tests under specs/features
+  watch(%r{^app/views/layouts/application.html.erb$}) {'spec/features'}
 
   watch(rails.controllers) do |m|
     [

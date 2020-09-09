@@ -14,7 +14,7 @@ RSpec.feature 'Sign in User' do
     fill_in 'Password', with: @password
     click_button 'Log in'
     expect(page).to have_content('Signed in successfully.')
-    expect(page).to have_content("signed in as #{@email}")
+    expect(page).to have_content("#{@email}")
   end
 
   scenario 'with invalid credentials' do
