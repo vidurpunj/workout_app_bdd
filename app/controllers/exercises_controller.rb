@@ -18,7 +18,7 @@ class ExercisesController < ApplicationController
   end
 
   def show
-
+    @exercise = current_user.exercises.find(params[:id])
   end
 
   private
