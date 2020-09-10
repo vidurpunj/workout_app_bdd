@@ -4,6 +4,7 @@ class Exercise < ApplicationRecord
 
   # validations
   validates :workout_date, :workout_details, :duration_in_minute, presence: true
+  validates :duration_in_minute, numericality: { greater_than: 0}
 
   # alias attributes
   alias_attribute :workout, :workout_details

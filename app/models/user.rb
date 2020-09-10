@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :exercises
 
   ## validations
-
   def full_name
     # "#{self.first_name} #{self.last_name}"
   end
