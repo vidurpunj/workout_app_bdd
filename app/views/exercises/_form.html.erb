@@ -4,7 +4,7 @@
       <h2><%= pluralize(@exercise.errors.count, 'error') %>
         prohibited the exercise to be saved.</h2>
       <ul>
-        <% @exercise.errors.full_messages do |message| %>
+        <% @exercise.errors.full_messages.each do |message| %>
           <li>
             <%= message %>
           </li>

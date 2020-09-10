@@ -22,4 +22,17 @@ RSpec.feature 'creating exercise' do
     expect(current_path).to eq(user_exercise_path(@user, exercise))
     expect(exercise.user_id).to eq(@user.id)
   end
+
+  scenario 'with invalid inputs' do
+    visit "/"
+    click_link "My Lounge"
+    click_link "New Workout"
+    fill_in 'Duration', with: ''
+    fill_in 'Workout Details', with: ''
+    fill_in 'Activity date', with: ''
+    click_button "Create Exercise"
+    expect(page).to have_content('Exercise has not been created')
+    expect(page).to have_content('3 errors prohibited the exercise to be saved.')
+
+  end
 end
