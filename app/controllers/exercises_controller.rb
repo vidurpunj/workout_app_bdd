@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
   def index
+    @exercise = current_user.exercises.last_7_days
   end
 
   def new
@@ -19,6 +20,12 @@ class ExercisesController < ApplicationController
 
   def show
     @exercise = current_user.exercises.find(params[:id])
+  end
+
+  def destroy
+    @exercise = Exercise.find(params[:id])
+    @exercise.destroy
+    redirect_to [current_user, :exercises]
   end
 
   private

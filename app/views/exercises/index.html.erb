@@ -1,3 +1,37 @@
 <div class="col-md-8 col-xs-12">
   <%= link_to 'New Workout', new_user_exercise_path(current_user), class: 'btn btn-success' %>
+  <% unless @exercise.empty? %>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>Duration (min)</th>
+          <th>Workout Details</th>
+          <th>Activity Date</th>
+          <td colspan="3"></td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @exercise.each do |exercise| %>
+          <tr>
+            <td><%= exercise.duration_in_minute %></td>
+            <td><%= exercise.workout_details %></td>
+            <td><%= exercise.activity_date %></td>
+            <td>
+              <%= link_to 'Edit', [:edit, current_user, exercise] %> |
+              <%= link_to 'Show', [current_user, exercise] %> |
+              <%= link_to 'Destroy', [current_user, exercise], method: :delete, data: { confirm: 'Are you sure?'} %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% else %>
+    <div>
+      <h1>No workout Found! </h1>
+    </div>
+  <% end %>
 </div>

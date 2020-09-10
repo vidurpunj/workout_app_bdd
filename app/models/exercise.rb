@@ -10,4 +10,5 @@ class Exercise < ApplicationRecord
   alias_attribute :workout, :workout_details
   alias_attribute :activity_date, :workout_date
 
+  scope :last_7_days, -> { where('workout_date > ?', 7.days.ago).order(workout_date: :desc)}
 end
