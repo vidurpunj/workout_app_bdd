@@ -17,12 +17,12 @@
     <%= f.number_field :duration_in_minute, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :workout_details, 'Workout Details' %>
-    <%= f.text_area :workout_details, class: 'form-control' %>
+    <%= f.label :workout, 'Workout Details' %>
+    <%= f.text_area :workout, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :workout_date, 'Activity date' %>
-    <%= f.date_field  :workout_date, class: 'form-control' %>
+    <%= f.label :activity_date, 'Activity date' %>
+    <%= f.date_field :activity_date, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.submit 'Create Exercise' %>

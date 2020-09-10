@@ -33,6 +33,5 @@ RSpec.feature 'creating exercise' do
     click_button "Create Exercise"
     expect(page).to have_content('Exercise has not been created')
     expect(page).to have_content('3 errors prohibited the exercise to be saved.')
-
   end
 end
