@@ -1,6 +1,7 @@
 class ExercisesController < ApplicationController
   def index
-    @exercise = current_user.exercises.last_7_days
+    @exercises = current_user.exercises.last_7_days
+    # byebug
   end
 
   def new

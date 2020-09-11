@@ -56,5 +56,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise', '~> 4.7.2'
+## for workout charts
+# gem 'd3-rails', '~> 5.9.2'
+# Add chart kiq gem along with the js required for it
+gem "chartkick"
 
 

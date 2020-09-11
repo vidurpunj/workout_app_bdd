@@ -1,0 +1,25 @@
+<h1>Workout Details</h1>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Duration (min)</strong>
+  </div>
+  <div class="col-md-6">
+    <%=  @exercise.duration_in_minute %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+  <strong>Date</strong>
+  </div>
+  <div class="col-md-6">
+    <%= @exercise.workout_date %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Details</strong>
+  </div>
+  <div class="col-md-6">
+    <%= @exercise.workout_details %>
+  </div>
+</div>
