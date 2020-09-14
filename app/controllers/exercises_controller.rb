@@ -1,7 +1,6 @@
 class ExercisesController < ApplicationController
   def index
     @exercises = current_user.exercises.last_7_days
-    # byebug
   end
 
   def new
@@ -39,9 +38,12 @@ class ExercisesController < ApplicationController
   end
 
   def destroy
-    @exercise = Exercise.find(params[:id])
-    @exercise.destroy
-    redirect_to [current_user, :exercises]
+    @exercise = current_user.exercises.find(params[:id])
+    if @exercise.destroy
+      flash[:notice] = 'Exercise has been destroyed'
+    end
+    # redirect_to [current_user, :exercises]
+    redirect_to user_exercises_path
   end
 
   private
