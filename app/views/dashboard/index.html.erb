@@ -1,6 +1,8 @@
 <div class="jumbotron">
   <h1>Workout Lounge!</h1>
-
+  <% if user_signed_in? %>
+    <p>user: <%= current_user.full_name %></p>
+  <% end %>
   <p>Show off your workout to you friends and family</p>
 </div>
 <div class="row">
