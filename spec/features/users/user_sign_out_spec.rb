@@ -4,7 +4,7 @@ RSpec.feature "Sign out a user" do
   before do
     @email = Faker::Internet.email
     @password = [*('a'..'z'),*('A'..'Z'), *(0..9)].sample(8).join
-    @user = User.create({email: @email, password: @password})
+    @user = User.create({first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: @email, password: @password})
     # sign_in(@user) ##warden short cut
   end
 

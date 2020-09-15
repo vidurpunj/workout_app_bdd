@@ -8,6 +8,8 @@ RSpec.feature "Users SignUp" do
   scenario "with valid credentails" do
     visit "/"
     click_link "Sign Up"
+    fill_in 'First name', with: Faker::Name.first_name
+    fill_in 'Last name', with: Faker::Name.last_name
     fill_in 'Email', with: Faker::Internet.email
     fill_in 'Password', with: @password
     fill_in 'Password confirmation', with: @password

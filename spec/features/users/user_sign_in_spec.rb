@@ -4,7 +4,7 @@ RSpec.feature 'Sign in User' do
   before do
     @email = Faker::Internet.email
     @password = [*('a'..'z'), *('A'..'Z'), *(0..9)].sample(8).join
-    User.create({email: @email, password: @password})
+    User.create({first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: @email, password: @password})
   end
 
   scenario 'with valid credentials' do

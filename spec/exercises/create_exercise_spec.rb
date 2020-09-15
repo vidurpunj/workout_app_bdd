@@ -4,7 +4,7 @@ RSpec.feature 'creating exercise' do
   before do
     @email = Faker::Internet.email
     @password = [*('a'..'z'), *('A'..'Z'), *(0..9)].sample(8).join
-    @user = User.create({email: @email, password: @password})
+    @user = User.create({first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: @email, password: @password})
     login_as(@user)
   end
 

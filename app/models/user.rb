@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :exercises, :dependent => :destroy
 
   ## validations
+  validates :first_name, :last_name, presence: true
+
+  # methods
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
