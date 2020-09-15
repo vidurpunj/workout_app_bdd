@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   resources :users do
     resources :exercises
   end
-
+  resources :dashboard, only: :index do
+    collection do
+      post :search, to: 'dashboard#search'
+      get :search, to: 'dashboard#search'
+    end
+  end
   get :exercises_in_7_days, to: 'charts#exercises_in_7_days', as: :exercises_in_7_days
 
 end

@@ -6,15 +6,21 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <%= link_to 'Home', root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to 'Athletes Den', root_path, class: "nav-link" %>
         </li>
+      </ul>
 
+      <%= form_with url: search_dashboard_index_path, class: 'form-inline my-2 my-lg-0', local: true, method: :get do |f| %>
+        <%= f.text_field :search_name, placeholder: "Search", value: params[:search_name], class: 'form-control mr-sm-2'%>
+        <%= f.submit 'search user', class: 'btn btn-outline-success my-2 my-sm-0' %>
+      <% end %>
 
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <% if user_signed_in? %>
             <div class="navbar-right">
@@ -28,15 +34,15 @@
           <% else %>
             <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
           <% end %>
-        </li>
-        <li class="nav-item">
-          <% if user_signed_in? %>
-            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link') %>
-          <% else %>
-            <%= link_to('Login', new_user_session_path, class: 'nav-link') %>
-          <% end %>
-        </li>
-      </ul>
+          </li>
+          <li class="nav-item">
+            <% if user_signed_in? %>
+              <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link') %>
+            <% else %>
+              <%= link_to('Login', new_user_session_path, class: 'nav-link') %>
+            <% end %>
+          </li>
+          </ul>
     </div>
   </nav>
 </header>
