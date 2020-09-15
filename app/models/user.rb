@@ -16,4 +16,7 @@ class User < ApplicationRecord
 
   ## scopes
   scope :last_7_days, -> { joins(:exercises).where("exercises.created_at between ? and ? and users.id = ?", Time.now - 7.day, Time.now, self.id) }
+
+  # default pagination
+  self.per_page = 10
 end

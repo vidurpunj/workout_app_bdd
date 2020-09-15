@@ -60,5 +60,6 @@ gem 'devise', '~> 4.7.2'
 # gem 'd3-rails', '~> 5.9.2'
 # Add chart kiq gem along with the js required for it
 gem "chartkick"
-
+## For pagination
+gem 'will_paginate-bootstrap', '~> 1.0.2'
 
