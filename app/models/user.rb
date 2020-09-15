@@ -5,23 +5,29 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   ## associations
   has_many :exercises, :dependent => :destroy
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships, class_name: "User"
 
   ## validations
   validates :first_name, :last_name, presence: true
 
-  # methods
+  # instance methods
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
 
+  ## class methods
   def self.search_by_name(name)
     name_array = name.split(' ')
     if name_array.size == 1
-      where('first_name LIKE ? or last_name LIKE ?', "%#{name_array[0]}%", "%#{name_array[0]}%")
+      where('first_name ILIKE ? or last_name ILIKE ?', "%#{name_array[0]}%", "%#{name_array[0]}%")
     else
-      where('first_name LIKE ? or last_name LIKE ?', "%#{name_array[0]}%", "%#{name_array[1]}%")
+      where('first_name ILIKE ? or last_name ILIKE ?', "%#{name_array[0]}%", "%#{name_array[1]}%")
     end
+  end
 
+  def follows_or_same?(new_friend)
+    friendships.map(&:friend).include?(new_friend) or self == new_friend
   end
 
   ## scopes

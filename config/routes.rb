@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   end
   get :exercises_in_7_days, to: 'charts#exercises_in_7_days', as: :exercises_in_7_days
 
+  resources :friendships, only: [:show, :create, :destroy]
+
 end
